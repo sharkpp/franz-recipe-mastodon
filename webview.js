@@ -1,4 +1,4 @@
-// //'use strict';
+//'use strict';
 
 const { ipcRenderer } = require('electron');
 
@@ -11,20 +11,6 @@ const BADGE_AUTO_CLEAR_DELAY = 10000; // delay time for badge clear auto
 if (!Notification.prototype.addEventListener) {
   Notification.prototype.addEventListener = function(){};
 }
-
-// redirect fix
-//ipcRenderer.on('redirect-url', (event, url) => {
-//  console.warn('@@redirect-url',event,url);
-//  // check and redirect to signin page when not loggdin
-//  if (/\/about$/.test(url)) {
-//    url = url.replace('/about', '/auth/sign_in');
-//  }
-//  window.location.assign(url);
-//});
-
-//ipcRenderer.on('settings-update', (event, url) => {
-//  console.warn('@@settings-update',event,url);
-//});
 
 module.exports = (Franz, data) => {
 
@@ -40,48 +26,6 @@ module.exports = (Franz, data) => {
     !activeUpdated && (activeUpdated = isActive != nextIsActive);
     isActive = nextIsActive;
   });
-
-//console.log(`:::@@ isActive=${data.isActive}, isMuted=${data.isMuted}, isNotificationEnabled=${data.isNotificationEnabled}, `);
-//console.log(`:::@@ serviceId=${serviceId}`);
-/*
-  console.log('@@Franz',Franz,this,data);
-  const getLatestStatement = () => (((document.querySelector('.status time')||{}).attributes||{})['datetime']||{}).nodeValue;
-  const getLatestNotify = () => (document.querySelector('.notification__message span')||{}).innerText;
-  
-  Franz.latestNotify    = getLatestNotify();
-  Franz.latestStatement = getLatestStatement();
-
-  const columnScrollable = document.querySelectorAll('.column .scrollable') || [];
-  //console.log('columnScrollable',columnScrollable);
-  columnScrollable[1].addEventListener('scroll', (ev) => {
-    Franz.latestNotify = getLatestNotify();
-  });
-  columnScrollable[0].addEventListener('scroll', (ev) => {
-    Franz.latestStatement = getLatestStatement();
-  });
-
-  const getMessages_ = () => {
-    const activeUpdated_ = activeUpdated; activeUpdated = false;
-    
-    //console.log(`:::== isActive=${data.isActive}, isMuted=${data.isMuted}, isNotificationEnabled=${data.isNotificationEnabled}, `);
-    console.log(`:::== serviceId=${serviceId} updateActive=${activeUpdated_} isActive=${isActive}`);
-
-    const ln = getLatestNotify();
-    const ls = getLatestStatement();
-
-    if (activeUpdated_ && isActive) {
-      Franz.latestNotify = getLatestNotify();
-      Franz.latestStatement = getLatestStatement();
-    }
-
-    let reply  = ln != Franz.latestNotify    ? 1 : 0;
-    let unread = ls != Franz.latestStatement ? 1 : 0;
-
-
-    //console.warn(`setBadge(${reply}, ${unread}) latestNotify="${Franz.latestNotify}" latestStatement="${Franz.latestStatement}" `);
-    Franz.setBadge(reply, unread);
-  }
-*/
 
   let replyCount = 0;
   let limitBadgeClear;
@@ -120,15 +64,10 @@ module.exports = (Franz, data) => {
   Franz.loop(getMessages);
 
   Franz.onNotify(notification => {
-    //console.warn('@@@onNotify',notification);
+    // increment reply count for badge
     ++replyCount;
     limitBadgeClear = Date.now() + BADGE_AUTO_CLEAR_DELAY;
-
-    //if (typeof notification.title !== 'string') {
-      //notification.title = ((notification.title.props || {}).content || [])[0] || 'Messenger';
-    //}
-    //alert(notification.title);
-    //return false;
+    //
     return notification;
   
   });
