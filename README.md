@@ -1,11 +1,14 @@
 # Mastodon for Franz 5
 
-This is the Franz 5 recipe for Mastodon
+This is the [Franz](https://meetfranz.com/) 5 recipe for Mastodon
 
 ## REQUIRED
 
-* Franz 5 or later
-* Mastodon account
+* [Franz](https://meetfranz.com/) 5 or later
+  Do not support older version.
+* [Mastodon](https://joinmastodon.org/) account
+  Do not have an account?
+  Choose from "[https://instances.social/list](Mastodon instances)"!
 
 ## HOW TO INSTALL
 
