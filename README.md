@@ -8,7 +8,7 @@ This is the [Franz](https://meetfranz.com/) 5 recipe for Mastodon
   Do not support older version.
 * [Mastodon](https://joinmastodon.org/) account
   Do not have an account?
-  Choose from "[https://instances.social/list](Mastodon instances)"!
+  Choose from "[Mastodon instances](https://instances.social/list)"!
 
 ## HOW TO INSTALL
 
