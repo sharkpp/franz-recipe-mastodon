@@ -17,7 +17,7 @@ This is the [Franz](https://meetfranz.com/) 5 recipe for Mastodon
 1. download the `franz-recipe-mastodon` folder.
 2. Open the Franz Plugins folder on your machine (note **that this `dev` directory may not exist yet, and you must create it**):
   * Mac: `~/Library/Application Support/Franz/recipes/dev/`
-  * Windows: `%appdata%/Franz/recipes/dev/`
+  * Windows: `%AppData%\Franz\recipes\dev\`
   * Linux: `~/.config/Franz/recipes/dev`
 3. Copy the `franz-recipe-mastodon` folder into the plugins directory
 4. Reload Franz
