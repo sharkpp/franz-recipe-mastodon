@@ -12,23 +12,31 @@ if (!Notification.prototype.addEventListener) {
   Notification.prototype.addEventListener = function(){};
 }
 
-module.exports = (Franz, data) => {
+module.exports = (Franz, service_) => {
+
+  let service = service_;
 
   // save service instance identify 
-  const serviceId = data.id; 
+  const serviceId = service.id; 
 
   // check if this service is active
   let activeUpdated = false;
-  let isActive      = true;
+  let isActive      = service.isActive;
 
-  ipcRenderer.on('settings-update', (sender, settings) => {
-    const nextIsActive = serviceId == settings.activeService;
-    !activeUpdated && (activeUpdated = isActive != nextIsActive);
-    isActive = nextIsActive;
+  ipcRenderer.on('-service-update', (sender, serviceNew) => {
+    service = serviceNew;
+    !activeUpdated && (activeUpdated = isActive != service.isActive);
+    isActive = service.isActive;
   });
 
+  //ipcRenderer.on('settings-update', (sender, settings) => {
+  //  const nextIsActive = serviceId == settings.activeService;
+  //  !activeUpdated && (activeUpdated = isActive != nextIsActive);
+  //  isActive = nextIsActive;
+  //});
+
   let replyCount = 0;
-  let limitBadgeClear;
+  let limitBadgeClear = false;
 
   const getMessages = function getMessages() {
     const activeUpdated_ = activeUpdated; activeUpdated = false;
