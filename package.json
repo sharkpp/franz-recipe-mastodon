@@ -1,7 +1,7 @@
 {
   "id": "mastodon",
   "name": "Mastodon",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Mastodon recipe for Franz 5 or later",
   "main": "index.js",
   "author": "sharkpp <webmaster@sharkpp.net>",
