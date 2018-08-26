@@ -6,7 +6,7 @@
   "main": "index.js",
   "author": "sharkpp <webmaster@sharkpp.net>",
   "license": "MIT",
-  "repository": "https://github.com/sharkpp/recipe-mastodon",
+  "repository": "https://github.com/sharkpp/franz-recipe-mastodon",
   "config": {
     "serviceURL": "https://{teamId}",
     "hasTeamId": true,
